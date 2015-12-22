@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-require './parse.rb'
+require_relative './parse.rb'
 require 'json'
 require 'openssl'
 
@@ -138,7 +138,7 @@ case prs.getcmd                                                 # Parse command 
         gk = (thash.keys&getting)[0]
         sk = data[gk].keys[0]
         thash[gk][sk] = data[gk][sk]
-        controller.update(encrypt(thash.to_json,params[:params]))
+        controller.update(savehash(data,params[:pass]))
 
     when 'del'
         gk = (thash.keys&getting)[0]
